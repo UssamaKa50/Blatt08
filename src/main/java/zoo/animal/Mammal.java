@@ -1,4 +1,4 @@
-package org.example;
+package zoo.animal;
 
 public non-sealed interface Mammal extends Animal {}
 

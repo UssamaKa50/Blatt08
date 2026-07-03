@@ -1,6 +1,6 @@
 package zoo.enclosure;
 
-import org.example.Animal;
+import zoo.animal.Animal;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.ArrayList;

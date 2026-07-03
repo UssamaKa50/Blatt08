@@ -1,4 +1,4 @@
-package org.example;
+package zoo.animal;
 
 import zoo.enclosure.Enclosure;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
 package zoo.enclosure;
 
-import org.example.Fish;
+import zoo.animal.Fish;
 
 
-    public class Aquarium extends Enclosure<Fish>{
+    public class Aquarium extends Enclosure<Fish> {
 
         public Aquarium(String name){
             super(name);

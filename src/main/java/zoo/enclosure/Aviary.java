@@ -1,6 +1,6 @@
 package zoo.enclosure;
 
-import org.example.Bird;
+import zoo.animal.Bird;
 
 public class Aviary extends Enclosure<Bird> {
     public Aviary(String name){

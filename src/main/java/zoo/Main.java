@@ -1,4 +1,6 @@
-package org.example;
+package zoo;
+
+import zoo.animal.Zoo;
 
 public class Main { // Der äußere Rahmen für die Klasse hat gefehlt!
 
@@ -6,7 +8,7 @@ public class Main { // Der äußere Rahmen für die Klasse hat gefehlt!
     public static void main(String[] args) {
 
         // Holt sich das Log-Tagebuch vom Zoo
-        java.util.logging.Logger zooLogger = java.util.logging.Logger.getLogger(org.example.Zoo.class.getName());
+        java.util.logging.Logger zooLogger = java.util.logging.Logger.getLogger(Zoo.class.getName());
 
         // Schaltet das Level um auf FINE, damit auch die Erfolgsmeldungen gedruckt werden
         zooLogger.setLevel(java.util.logging.Level.FINE);
