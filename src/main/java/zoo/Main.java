@@ -1,18 +1,51 @@
 package zoo;
 
-import zoo.animal.Zoo;
+import zoo.animal.Mammal;
+import zoo.command.AddAnimalCommand;
+import zoo.command.Command;
+import zoo.command.CommandManager;
+import zoo.enclosure.Enclosure;
 
-public class Main { // Der äußere Rahmen für die Klasse hat gefehlt!
 
-    // Die main-Methode braucht zwingend (String[] args) in den Klammern
+class TestAffe implements Mammal {
+
+    @Override
+    public String getName() {
+        return "Kiki";
+    }
+
+    @Override
+    public String name() {
+        return "";
+    }
+}
+
+public class Main {
     public static void main(String[] args) {
+        CommandManager manager = new CommandManager();
+        Enclosure<Mammal> monkeyHouse = new Enclosure<>("Affenhaus");
 
-        // Holt sich das Log-Tagebuch vom Zoo
-        java.util.logging.Logger zooLogger = java.util.logging.Logger.getLogger(Zoo.class.getName());
+        // Wir erstellen Kiki ganz sauber über unsere Testklasse
+        Mammal chimpanzee = new TestAffe();
 
-        // Schaltet das Level um auf FINE, damit auch die Erfolgsmeldungen gedruckt werden
-        zooLogger.setLevel(java.util.logging.Level.FINE);
+        System.out.println("=== DEIN ZOO-COMMAND-SYSTEM SPEZIALTEST ===");
 
-        // Hier drunter kannst du jetzt deine Zoo-Objekte testen, wenn du willst!
+        // 2. Ersten Befehl erstellen: Kiki hinzufügen
+        Command<Enclosure<? super Mammal>> addCommand1 = new AddAnimalCommand<>(chimpanzee);
+
+        System.out.println("\n[TEST 1] Kiki das erste Mal hinzufügen:");
+        manager.executeCommand(addCommand1, monkeyHouse);
+
+        System.out.println("\n[TEST 2] Fehler provozieren (Kiki ein zweites Mal hinzufügen):");
+        Command<Enclosure<? super Mammal>> addCommand2 = new AddAnimalCommand<>(chimpanzee);
+        manager.executeCommand(addCommand2, monkeyHouse);
+
+        System.out.println("\n[TEST 3] Undo aufrufen:");
+        manager.undo(monkeyHouse);
+
+        System.out.println("\n[TEST 4] Redo aufrufen:");
+        manager.redo(monkeyHouse);
+
+        System.out.println("\n=== TEST BEENDET ===");
     }
 }

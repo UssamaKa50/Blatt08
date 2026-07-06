@@ -86,4 +86,13 @@ public class Zoo {
                 .collect(Collectors.joining(", "));
         return String.format("Zoo mit %d Gehegen und %d Tieren: %s", enclosures.size(), totalAnimals, stats);
     }
+
+    // NACHHER (Korrekt):
+    public Optional<Animal> findAnimalByName(String name) {
+        return enclosures.stream()
+                .flatMap(enclosure -> enclosure.getInhabitants().stream())
+                .filter(animal -> animal.name().equals(name))
+                .map(animal -> (Animal) animal) // <-- Zwingt den Stream, ab hier mit dem Basistyp "Animal" zu arbeiten
+                .findFirst(); // Jetzt kommt hier ein sauberes Optional<Animal> heraus!
+    }
 }

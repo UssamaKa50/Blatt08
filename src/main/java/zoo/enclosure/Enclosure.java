@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
     public class Enclosure<T extends Animal>{
@@ -34,5 +35,10 @@ import java.util.List;
         return new ArrayList<>(inhabitants);
     }
 
+        public Optional<T> findAnimalByName(String animalName) {
+            return inhabitants.stream()
+                    .filter(animal -> animal.name().equalsIgnoreCase(animalName))
+                    .findFirst();
+        }
 
 }
